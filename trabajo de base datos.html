@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Login - Guardar Trabajos</title>
+	<style>
+		body { font-family: Arial, sans-serif; background: linear-gradient(120deg, #f4f4f4 60%, #cce2ff 100%); display: flex; justify-content: center; align-items: center; height: 100vh; }
+		.login-container { background: #fff; padding: 2rem; border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.13); width: 320px; animation: fadeIn 1s; }
+		@keyframes fadeIn { from { opacity: 0; transform: translateY(-30px);} to { opacity: 1; transform: translateY(0);} }
+		h2 { text-align: center; margin-bottom: 1.5rem; color: #007bff; letter-spacing: 1px; }
+		.input-group { position: relative; }
+		input[type="text"], input[type="password"] { width: 100%; padding: 0.5rem 2.5rem 0.5rem 0.5rem; margin-bottom: 1rem; border: 1.5px solid #b3c6e0; border-radius: 4px; transition: border 0.2s; font-size: 1rem; }
+		input:focus { border: 1.5px solid #007bff; outline: none; }
+		.toggle-password { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; color: #888; }
+		button { width: 100%; padding: 0.7rem; background: linear-gradient(90deg, #007bff 60%, #0056b3 100%); color: #fff; border: none; border-radius: 4px; font-size: 1rem; cursor: pointer; transition: background 0.2s, transform 0.1s; box-shadow: 0 2px 8px rgba(0,123,255,0.08); }
+		button:active { transform: scale(0.97); }
+		button:disabled { background: #b3c6e0; cursor: not-allowed; }
+		.register-link { display: block; text-align: center; margin-top: 1rem; color: #007bff; text-decoration: none; transition: color 0.2s; }
+		.register-link:hover { text-decoration: underline; color: #0056b3; }
+		#loginMessage { min-height: 1.5em; transition: color 0.2s; }
+		.success { color: #28a745 !important; }
+		.error { color: #dc3545 !important; }
+	</style>
+</head>
+<body>
+	<div class="login-container">
+		<nav id="mainNav" style="text-align:center; margin-bottom:1rem; display:none;">
+			<a href="subir_trabajo.html">Subir Trabajo</a> |
+			<a href="trabajos_por_semana.html">Ver Trabajos por Semana</a> |
+			<a href="https://github.com/josueherrerabastidas7-cmyk/pagina-web-para-los-trabajos.git" target="_blank">Repositorio GitHub</a>
+		</nav>
+		<h2>Iniciar Sesión</h2>
+		<form id="loginForm" autocomplete="off">
+			<div class="input-group">
+				<input type="text" id="username" placeholder="Usuario" required />
+			</div>
+			<div class="input-group">
+				<input type="password" id="password" placeholder="Contraseña" required />
+				<span class="toggle-password" id="toggleLoginPassword" title="Mostrar/Ocultar">👁️</span>
+			</div>
+			<button type="submit" id="loginBtn">Entrar</button>
+		</form>
+		<a href="#" class="register-link" id="showRegister">¿No tienes cuenta? Regístrate</a>
+		<form id="registerForm" style="display:none; margin-top:1rem;" autocomplete="off">
+			<div class="input-group">
+				<input type="text" id="regUsername" placeholder="Usuario nuevo" required />
+			</div>
+			<div class="input-group">
+				<input type="password" id="regPassword" placeholder="Contraseña nueva" required />
+				<span class="toggle-password" id="toggleRegisterPassword" title="Mostrar/Ocultar">👁️</span>
+			</div>
+			<button type="submit" id="registerBtn">Registrarse</button>
+		</form>
+	<div id="loginMessage" style="text-align:center; margin-top:1rem;"></div>
+	</div>
+	<script>
+
+		// Mostrar/ocultar contraseña login
+		document.getElementById('toggleLoginPassword').addEventListener('click', function() {
+			const pwd = document.getElementById('password');
+			pwd.type = pwd.type === 'password' ? 'text' : 'password';
+			this.textContent = pwd.type === 'password' ? '👁️' : '🙈';
+		});
+
+		// Mostrar/ocultar contraseña registro
+		document.getElementById('toggleRegisterPassword').addEventListener('click', function() {
+			const pwd = document.getElementById('regPassword');
+			pwd.type = pwd.type === 'password' ? 'text' : 'password';
+			this.textContent = pwd.type === 'password' ? '👁️' : '🙈';
+		});
+
+		// Login interactivo
+		document.getElementById('loginForm').addEventListener('submit', function(e) {
+			e.preventDefault();
+			const username = document.getElementById('username').value.trim();
+			const password = document.getElementById('password').value.trim();
+			const btn = document.getElementById('loginBtn');
+			btn.disabled = true;
+			btn.textContent = 'Entrando...';
+			document.getElementById('loginMessage').className = '';
+			setTimeout(() => {
+				if(username === 'admin' && password === '123') {
+					document.getElementById('mainNav').style.display = 'block';
+					document.getElementById('loginMessage').className = 'success';
+					document.getElementById('loginMessage').innerText = '¡Login exitoso! Redirigiendo...';
+					btn.textContent = 'Entrar';
+					btn.disabled = false;
+					setTimeout(() => { window.location.href = 'trabajos_por_semana.html'; }, 1200);
+				} else {
+					document.getElementById('loginMessage').className = 'error';
+					document.getElementById('loginMessage').innerText = 'Usuario o contraseña incorrectos';
+					btn.textContent = 'Entrar';
+					btn.disabled = false;
+				}
+			}, 900);
+		});
+
+		// Mostrar formulario de registro
+		document.getElementById('showRegister').addEventListener('click', function(e) {
+			e.preventDefault();
+			document.getElementById('registerForm').style.display = 'block';
+			document.getElementById('showRegister').style.display = 'none';
+		});
+
+		// Simulación de registro
+		document.getElementById('registerForm').addEventListener('submit', function(e) {
+			e.preventDefault();
+			const btn = document.getElementById('registerBtn');
+			btn.disabled = true;
+			btn.textContent = 'Registrando...';
+			document.getElementById('loginMessage').className = '';
+			setTimeout(() => {
+				document.getElementById('loginMessage').className = 'success';
+				document.getElementById('loginMessage').innerText = '¡Registro exitoso! Redirigiendo...';
+				btn.textContent = 'Registrarse';
+				btn.disabled = false;
+				setTimeout(() => { window.location.href = 'trabajos_por_semana.html'; }, 1200);
+			}, 1000);
+		});
+	</script>
+</body>
+</html>
