@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mi Portafolio Freelancer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(135deg, #43cea2, #185a9d);
+      color: #222;
+    }
+    header {
+      background: #fff;
+      padding: 2rem 0 1rem 0;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+    }
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #43cea2;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      margin: 0.5rem 0 0.2rem 0;
+      color: #185a9d;
+    }
+    .subtitle {
+      color: #43cea2;
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+    nav {
+      margin: 1rem 0;
+    }
+    nav a {
+      color: #185a9d;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 0 1rem;
+      transition: color 0.2s;
+    }
+    nav a:hover {
+      color: #43cea2;
+    }
+    section {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 8px 32px rgba(44,62,80,0.12);
+      padding: 2rem 2.5rem;
+    }
+    .services, .testimonials {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .service, .testimonial {
+      background: #f1f5f9;
+      border-radius: 10px;
+      padding: 1rem 1.5rem;
+      flex: 1 1 220px;
+      min-width: 220px;
+      max-width: 320px;
+      box-shadow: 0 2px 8px rgba(44,62,80,0.06);
+    }
+    .portfolio {
+      margin-top: 2rem;
+    }
+    .semana {
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 1rem;
+    }
+    .semana-title {
+      font-weight: bold;
+      color: #43cea2;
+      margin-bottom: 0.5rem;
+    }
+    .trabajos-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 0.5rem 0;
+    }
+    .trabajos-list li {
+      background: #eaf6f6;
+      margin-bottom: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1rem;
+    }
+    .trabajos-list li button {
+      background: #e53e3e;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.3rem 0.8rem;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+    .trabajos-list li button:hover {
+      background: #c53030;
+    }
+    .add-form {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .add-form input[type="text"] {
+      flex: 1;
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    .add-form button {
+      background: #43cea2;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.5rem 1.2rem;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .add-form button:hover {
+      background: #185a9d;
+    }
+    .add-form input[type="file"] {
+      flex: 1;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+      background: #fff;
+      padding: 0.5rem;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    .contact-form input, .contact-form textarea {
+      padding: 0.7rem;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    .contact-form button {
+      background: #185a9d;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.7rem 1.2rem;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .contact-form button:hover {
+      background: #43cea2;
+      color: #185a9d;
+    }
+    .social {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+    .social a {
+      margin: 0 0.7rem;
+      color: #185a9d;
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .social a:hover {
+      color: #43cea2;
+    }
+    @media (max-width: 700px) {
+      section {
+        padding: 1rem 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Foto de perfil" class="profile-img">
+    <h1>Juan Pérez</h1>
+    <div class="subtitle">Desarrollador Web Freelancer</div>
+    <nav>
+      <a href="#servicios">Servicios</a>
+      <a href="#portafolio">Portafolio</a>
+      <a href="#testimonios">Testimonios</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+  <section id="servicios">
+    <h2>Servicios</h2>
+    <div class="services">
+      <div class="service">Diseño y desarrollo de páginas web modernas</div>
+      <div class="service">Optimización SEO y rendimiento</div>
+      <div class="service">Integración de APIs y automatización</div>
+      <div class="service">Soporte y mantenimiento web</div>
+    </div>
+  </section>
+  <section id="portafolio" class="portfolio">
+    <h2>Portafolio: Trabajos por Semana</h2>
+    <div id="semanas"></div>
+  </section>
+  <section id="testimonios">
+    <h2>Testimonios</h2>
+    <div class="testimonials">
+      <div class="testimonial">"Excelente profesional, entregó mi proyecto a tiempo y con gran calidad." - Cliente 1</div>
+      <div class="testimonial">"Muy atento y resolutivo, lo recomiendo totalmente." - Cliente 2</div>
+      <div class="testimonial">"Mi web ahora se ve increíble y funciona perfecto." - Cliente 3</div>
+    </div>
+  </section>
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <form class="contact-form">
+      <input type="text" placeholder="Tu nombre" required>
+      <input type="email" placeholder="Tu correo" required>
+      <textarea rows="4" placeholder="Mensaje" required></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <div class="social">
+      <a href="#" title="WhatsApp">💬</a>
+      <a href="#" title="Email">📧</a>
+      <a href="#" title="LinkedIn">🔗</a>
+      <a href="#" title="GitHub">🐙</a>
+    </div>
+  </section>
+  <script>
+    // Portafolio: 16 semanas, subir y quitar trabajos
+    function getTrabajos() {
+      return JSON.parse(localStorage.getItem('trabajos-freelancer') || '{}');
+    }
+    function setTrabajos(obj) {
+      localStorage.setItem('trabajos-freelancer', JSON.stringify(obj));
+    }
+    function renderSemanas() {
+      const semanasDiv = document.getElementById('semanas');
+      semanasDiv.innerHTML = '';
+      const trabajos = getTrabajos();
+      for (let i = 1; i <= 16; i++) {
+        const semanaKey = 'Semana ' + i;
+        const trabajosSemana = trabajos[semanaKey] || [];
+        const semanaDiv = document.createElement('div');
+        semanaDiv.className = 'semana';
+        semanaDiv.innerHTML = `
+          <div class="semana-title">${semanaKey}</div>
+          <ul class="trabajos-list" id="list-${i}">
+            ${trabajosSemana.map((t, idx) => `<li>${t} <button onclick=\"removeTrabajo(${i},${idx})\">Quitar</button></li>`).join('')}
+          </ul>
+          <form class="add-form" onsubmit="addTrabajo(event, ${i})">
+            <input type="text" placeholder="Descripción del trabajo..." id="input-${i}" required maxlength="100">
+            <button type="submit">Subir</button>
+          </form>
+          <form class="add-form" onsubmit="uploadArchivo(event, ${i})" enctype="multipart/form-data" style="margin-top:0.5rem;">
+            <input type="file" id="file-${i}" name="file" required>
+            <button type="submit">Subir archivo</button>
+          </form>
+          <div id="archivo-msg-${i}" style="margin-top:0.3rem;color:#185a9d;font-size:0.95rem;"></div>
+        `;
+        semanasDiv.appendChild(semanaDiv);
+      }
+    }
+    function addTrabajo(e, semana) {
+      e.preventDefault();
+      const input = document.getElementById('input-' + semana);
+      const valor = input.value.trim();
+      if (!valor) return;
+      const trabajos = getTrabajos();
+      const key = 'Semana ' + semana;
+      if (!trabajos[key]) trabajos[key] = [];
+      trabajos[key].push(valor);
+      setTrabajos(trabajos);
+      input.value = '';
+      renderSemanas();
+    }
+    function removeTrabajo(semana, idx) {
+      const trabajos = getTrabajos();
+      const key = 'Semana ' + semana;
+      trabajos[key].splice(idx, 1);
+      setTrabajos(trabajos);
+      renderSemanas();
+    }
+    // Subir archivo al backend
+    function uploadArchivo(e, semana) {
+      e.preventDefault();
+      const fileInput = document.getElementById('file-' + semana);
+      const msgDiv = document.getElementById('archivo-msg-' + semana);
+      if (!fileInput.files.length) return;
+      const formData = new FormData();
+      formData.append('file', fileInput.files[0]);
+      formData.append('semana', 'semana-' + semana);
+      msgDiv.textContent = 'Subiendo archivo...';
+      fetch('http://localhost:3000/upload', {
+        method: 'POST',
+        body: formData
+      })
+      .then(res => res.text())
+      .then(msg => {
+        msgDiv.textContent = msg;
+        fileInput.value = '';
+      })
+      .catch(err => {
+        msgDiv.textContent = 'Error al subir archivo';
+      });
+    }
+    // Inicializar
+    renderSemanas();
+  </script>
+</body>
+</html>
